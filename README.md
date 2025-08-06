@@ -14,6 +14,21 @@ A Terraform module for building and pushing Docker images to Amazon ECR using Do
 - Configurable triggers for rebuilds
 - Attestation control (provenance, SBOM)
 
+## Prerequisites
+
+### Docker Buildx Installation
+
+This module requires Docker Buildx to be installed in your build environment.
+
+
+- https://github.com/docker/buildx-desktop/
+
+
+**Verify Installation:**
+```bash
+docker buildx version
+```
+
 ## Usage
 
 ### Basic Example
@@ -193,12 +208,6 @@ If you're currently using the [kreuzwerker/docker](https://github.com/kreuzwerke
 | aws | ~> 5.99 |
 | null | ~> 3.2.4 |
 
-## Prerequisites
-
-1. **Docker**: Docker must be installed and running
-2. **AWS CLI**: Configured with appropriate permissions for ECR
-3. **ECR Repository**: The target ECR repository must exist
-4. **Docker Buildx**: For multi-platform builds (usually included with Docker Desktop)
 
 ### Required AWS Permissions
 
@@ -252,13 +261,6 @@ The AWS credentials used must have the following permissions:
 | image_tag | Tag of the built image |
 | source_sha | SHA256 hash of the source files |
 
-## How It Works
-
-1. **Source Tracking**: The module calculates SHA256 hashes of all specified source files and the Dockerfile
-2. **Image Tagging**: Images are tagged based on content hash, ensuring consistent rebuilds only when source changes
-3. **ECR Authentication**: Automatically handles ECR authentication using AWS provider credentials
-4. **Docker Build**: Uses `docker buildx build` with configurable arguments for maximum flexibility
-5. **Platform Support**: Supports single and multi-platform builds
 
 ## Contributing
 
