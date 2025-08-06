@@ -1,17 +1,3 @@
-terraform {
-  required_version = "~> 1.10.0"
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~>5.99"
-    }
-    null = {
-      source  = "hashicorp/null"
-      version = "~>3.2.4"
-    }
-  }
-}
-
 data "aws_region" "current" {}
 data "aws_caller_identity" "current" {}
 data "aws_ecr_authorization_token" "token" {}
