@@ -195,17 +195,17 @@ If you're currently using the [kreuzwerker/docker](https://github.com/kreuzwerke
 
 ## Requirements
 
-| Name | Version |
-|------|---------|
+| Name      | Version  |
+|-----------|----------|
 | terraform | >= 1.9.1 |
-| aws | ~> 5.99 |
-| null | ~> 3.2.4 |
+| aws       | ~> 6.0   |
+| null      | ~> 3.2.4 |
 
 ## Providers
 
-| Name | Version |
-|------|---------|
-| aws | ~> 5.99 |
+| Name | Version  |
+|------|----------|
+| aws  | ~> 6.0   |
 | null | ~> 3.2.4 |
 
 
