@@ -3,7 +3,7 @@ data "aws_caller_identity" "current" {}
 data "aws_ecr_authorization_token" "token" {}
 
 locals {
-  repository_url = "${data.aws_caller_identity.current.account_id}.dkr.ecr.${data.aws_region.current.name}.amazonaws.com/${var.ecr_repo}"
+  repository_url = "${data.aws_caller_identity.current.account_id}.dkr.ecr.${data.aws_region.current.region}.amazonaws.com/${var.ecr_repo}"
 
   files          = setunion([for pattern in var.source_files : fileset(var.source_path, pattern)]...)
   files_sha      = [for f in local.files : filesha256("${var.source_path}/${f}")]
