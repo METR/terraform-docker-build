@@ -7,7 +7,7 @@ locals {
 
   files          = setunion([for pattern in var.source_files : fileset(var.source_path, pattern)]...)
   files_sha      = [for f in local.files : filesha256("${var.source_path}/${f}")]
-  dockerfile_sha = filesha256("${var.source_path}/${var.docker_file_path}")
+  dockerfile_sha = filesha256(var.docker_file_path)
   src_sha        = sha256(join("", concat(local.files_sha, [local.dockerfile_sha])))
 
   image_tag = coalesce(
