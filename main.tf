@@ -48,8 +48,6 @@ resource "null_resource" "docker_build" {
   ]
 
   provisioner "local-exec" {
-    command = "docker buildx build ${join(" ", local.build_args)} . && echo 'Built and pushed ${local.image_uri}'"
-
-    working_dir = var.source_path
+    command = "docker buildx build ${join(" ", local.build_args)} ${var.source_path} && echo 'Built and pushed ${local.image_uri}'"
   }
 }
