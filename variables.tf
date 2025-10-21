@@ -31,6 +31,12 @@ variable "docker_file_path" {
   default     = "Dockerfile"
 }
 
+variable "build_contexts" {
+  type        = map(string)
+  description = "Map of build context names to paths"
+  default     = {}
+}
+
 variable "build_target" {
   type        = string
   description = "Docker build target (--target flag)"
@@ -41,6 +47,12 @@ variable "build_args" {
   type        = map(string)
   description = "Build arguments to pass to docker build"
   default     = {}
+}
+
+variable "build_command_args" {
+  type        = list(string)
+  description = "Additional command-line arguments to pass to the docker build command"
+  default     = []
 }
 
 variable "image_tag_prefix" {
