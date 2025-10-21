@@ -33,11 +33,15 @@ locals {
       "--push",
     ],
     [
+      for context_name, context_path in var.build_contexts : "--build-context='${context_name}=${context_path}'"
+    ],
+    [
       for k, v in var.build_args : "--build-arg='${k}=${v}'"
     ],
     var.builder == "" ? [] : ["--builder='${var.builder}'"],
     var.build_target == "" ? [] : ["--target='${var.build_target}'"],
     var.disable_attestations ? ["--provenance=false", "--sbom=false"] : [],
+    var.build_command_args,
   )
 }
 
