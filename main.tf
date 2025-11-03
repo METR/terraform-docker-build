@@ -55,10 +55,10 @@ resource "null_resource" "docker_build" {
     command = <<-CMD
       if aws ecr describe-images --repository-name ${var.ecr_repo} \
            --image-ids imageTag=${local.image_tag} \
-           --region ${data.aws_region.current.name} >/dev/null 2>&1; then
+           --region ${data.aws_region.current.region} >/dev/null 2>&1; then
         echo "Image ${local.image_uri} already in ECR. Skipping build."
       else
-        aws ecr get-login-password --region ${data.aws_region.current.name} \
+        aws ecr get-login-password --region ${data.aws_region.current.region} \
           | docker login --username AWS --password-stdin ${local.repository_url}
         docker buildx build ${join(" ", local.build_args)} ${var.source_path} && echo 'Built and pushed ${local.image_uri}'
       fi
