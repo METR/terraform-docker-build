@@ -59,7 +59,7 @@ resource "null_resource" "docker_build" {
       then
         echo "Image ${local.image_uri} already in ECR. Skipping build."
         exit 0
-      end
+      fi
       
       docker buildx build ${join(" ", local.build_args)} "${var.source_path}" && echo 'Built and pushed ${local.image_uri}'
     CMD
